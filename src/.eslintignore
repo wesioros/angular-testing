@@ -1,0 +1,6 @@
+{
+    "ignorePatterns": ["*.html"],
+    "rules": {
+
+    }
+}
