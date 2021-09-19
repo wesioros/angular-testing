@@ -9,5 +9,7 @@
       "jasminewd2",
       "node"
     ]
-  }
+  },
+  "exclude": ["node_modules", "test", "dist", "dist/**/*spec.ts"],
+  "include": ["src/**/*", ".eslintrc.js"]
 }

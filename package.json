@@ -16,9 +16,7 @@
   },
   "lint-staged": {
     "src/**/*.{ts,scss,html}": [
-      "npm run organize-imports",
-      "npm run prettier",
-      "npm run lint"
+      "npm run lint --fix"
     ]
   },
   "private": true,
@@ -36,16 +34,17 @@
     "@ngrx/effects": "^12.4.0",
     "@ngrx/store": "^12.4.0",
     "@ngrx/store-devtools": "^12.4.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "eslint-plugin-unused-imports": "^1.1.4",
     "lint-staged": "^11.1.2",
     "organize-imports": "^1.0.3",
-    "prettier": "^2.4.1",
     "tslib": "^1.10.0",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^12.2.6",
     "@angular-eslint/builder": "12.4.1",
-    "@angular-eslint/eslint-plugin": "12.4.1",
+    "@angular-eslint/eslint-plugin": "^12.4.1",
     "@angular-eslint/eslint-plugin-template": "12.4.1",
     "@angular-eslint/schematics": "12.4.1",
     "@angular-eslint/template-parser": "12.4.1",
@@ -56,9 +55,11 @@
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
-    "@typescript-eslint/eslint-plugin": "4.28.2",
-    "@typescript-eslint/parser": "4.28.2",
+    "@typescript-eslint/eslint-plugin": "^4.31.1",
+    "@typescript-eslint/parser": "^4.31.1",
     "eslint": "^7.26.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "husky": "^7.0.2",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
@@ -67,6 +68,7 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
+    "prettier": "^2.4.1",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "typescript": "~4.3.5"
