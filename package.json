@@ -15,7 +15,7 @@
     "organize-imports-all": "organize-imports src/app/*.ts"
   },
   "lint-staged": {
-    "src/app/**/*.{ts,scss}": [
+    "src/**/*.{ts,scss}": [
       "npm run lint"
     ]
   },
