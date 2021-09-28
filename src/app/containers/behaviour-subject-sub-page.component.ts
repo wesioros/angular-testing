@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ToastrService } from "ngx-toastr";
-import { BehaviorSubject, Observable, Subscription, toArray } from "rxjs";
+import { BehaviorSubject, Observable, Subscription } from "rxjs";
 import { Breadcrumb } from "../models/app.models";
 import { BreadcrumbService } from "../services/bread-crumb.service";
 import { ClipsService } from "../services/injectable-subject.service";
@@ -21,13 +21,14 @@ import { ClipsService } from "../services/injectable-subject.service";
     <button mat-raised-button (click)="newSubscription()">
       Añadir Suscripción
     </button>
-    <li *ngFor="let clip of clips$ | async">{{ clip }}</li>
+    <li *ngFor="let clip of clips">{{ clip }}</li>
   `,
   styles: [``],
 })
 export class BehaviourSubjectSubPageComponent implements OnInit, OnDestroy {
   breadcrumbs$: Observable<Breadcrumb[]>;
   clips$: Observable<string[]>;
+  clips = [];
 
   behaviorSubject = new BehaviorSubject(null);
   subs = new Subscription();
@@ -46,7 +47,8 @@ export class BehaviourSubjectSubPageComponent implements OnInit, OnDestroy {
     );
   }
   ngOnInit(): void {
-    this.clips$ = this.ds.clips$.pipe(toArray());
+    this.clips = [];
+    this.subs.add(this.ds.clips$.subscribe((data) => this.clips.push(data)));
   }
 
   newSubscription() {

@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ToastrService } from "ngx-toastr";
-import { Observable, ReplaySubject, Subscription, toArray } from "rxjs";
+import { Observable, ReplaySubject, Subscription } from "rxjs";
 import { Breadcrumb } from "../models/app.models";
 import { BreadcrumbService } from "../services/bread-crumb.service";
 import { ClipsService } from "../services/injectable-subject.service";
@@ -21,7 +21,7 @@ import { ClipsService } from "../services/injectable-subject.service";
     <button mat-raised-button (click)="newSubscription()">
       Añadir Suscripción
     </button>
-    <li *ngFor="let clip of clips$ | async">{{ clip }}</li>
+    <li *ngFor="let clip of clips">{{ clip }}</li>
     <!--<button mat-raised-button (click)="clear()">Borrar</button>-->
   `,
   styleUrls: [],
@@ -29,7 +29,7 @@ import { ClipsService } from "../services/injectable-subject.service";
 export class ReplaySubjectSubPageComponent implements OnInit, OnDestroy {
   breadcrumbs$: Observable<Breadcrumb[]>;
   clips$: Observable<string[]>;
-
+  clips = [];
   replaySubject = new ReplaySubject(10);
   subs = new Subscription();
 
@@ -47,7 +47,8 @@ export class ReplaySubjectSubPageComponent implements OnInit, OnDestroy {
     );
   }
   ngOnInit(): void {
-    this.clips$ = this.ds.clips$.pipe(toArray());
+    this.clips = [];
+    this.subs.add(this.ds.clips$.subscribe((data) => this.clips.push(data)));
   }
 
   newSubscription() {
